@@ -32,6 +32,27 @@ button:hover {
     background-color: red !important;
     color: white;
 }
+
+#hidden-link {
+    display: none;
+    margin-top: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+#hidden-link a {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(43, 43, 82);
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+#hidden-link a:hover {
+    background-color: rgb(63, 63, 102);
+}
 </style>
 </head>
 <body>
@@ -45,6 +66,10 @@ button:hover {
 <button onclick="handleClick(3)">3</button>
 <button onclick="handleClick(4)">4</button>
 <button onclick="handleClick(5)">5</button>
+
+<div id="hidden-link">
+    <a href="https://WorrallCoolCluxClan/Home.Github.io" target="_blank">Games</a>
+</div>
 
 <script>
 // Correct order
@@ -66,6 +91,11 @@ function validateOrder() {
     const buttons = document.querySelectorAll("button");
     const isCorrect = JSON.stringify(userOrder) === JSON.stringify(correctOrder);
 
+    if (isCorrect) {
+        // Reveal the hidden link
+        document.getElementById("hidden-link").style.display = "block";
+    }
+
     // Flash buttons green if correct, red if incorrect
     buttons.forEach(button => {
         button.classList.add(isCorrect ? 'flash-green' : 'flash-red');
@@ -77,8 +107,10 @@ function validateOrder() {
             button.classList.remove('flash-green', 'flash-red');
         });
 
-        // Reset user order for a new attempt
-        userOrder = [];
+        // Reset user order for a new attempt if incorrect
+        if (!isCorrect) {
+            userOrder = [];
+        }
     }, 1000);
 }
 </script>
