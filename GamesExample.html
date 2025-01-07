@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<style>
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+iframe {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+button {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: rgb(43, 43, 82);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(63, 63, 102);
+}
+</style>
+
+</head>
+
+<body>
+    
+<iframe id="game-frame" src="https://clearcache.store/RetroBowl/" title="Test" width="800" height="600" allow="fullscreen"></iframe> 
+
+<button onclick="goFullscreen()">Fullscreen</button>
+
+<script>
+function goFullscreen() {
+    const iframe = document.getElementById('game-frame');
+    if (iframe.requestFullscreen) {
+        iframe.requestFullscreen();
+    } else if (iframe.mozRequestFullScreen) { // For Firefox
+        iframe.mozRequestFullScreen();
+    } else if (iframe.webkitRequestFullscreen) { // For Chrome, Safari, and Opera
+        iframe.webkitRequestFullscreen();
+    } else if (iframe.msRequestFullscreen) { // For IE/Edge
+        iframe.msRequestFullscreen();
+    } else {
+        alert("Fullscreen is not supported on your browser.");
+    }
+}
+</script>
+
+</body>
+</html>
